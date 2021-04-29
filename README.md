@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-29 23:11:51
- * @LastEditTime: 2021-04-29 23:34:05
+ * @LastEditTime: 2021-04-30 02:06:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /FlopFarmDjango/README.md
@@ -22,16 +22,23 @@ FlopFarmDjango
     └───flopfarm_admin
         └───static # CSS, JavaScript, png... any static files
         └───templates # HTML
+            |   temp.html # General template for dashboard, user&provider pages
             |   dashboard.html
-            |   user.html
-            |   edge.html
+            |   market.html
+            |   purchased.html
+            |   idle_instance.html
+            |   running_instance.html
+            |   login.html
             |   ...
+        |   models.py
+        |   urls.py
+        |   views.py
         |   ...
     |   manage.py
     |   ...
 ```
 ## Run Website
-```linux
+```
 cd FlopFarmDjango/flopfarm
 python manage.py runserver
 ```
@@ -39,3 +46,9 @@ and you can browse the website at
 ```
 127.0.0.1:8000
 ```
+So far, the login function is not developed. You can skip login by directly clicking the **Flop**Farm title.
+
+## Quick Tutorial
+### Database schema
+### Loading database
+### Using static files
