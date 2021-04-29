@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-04-29 23:11:51
- * @LastEditTime: 2021-04-29 23:28:39
+ * @LastEditTime: 2021-04-29 23:34:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /FlopFarmDjango/README.md
@@ -22,10 +22,13 @@ FlopFarmDjango
     └───flopfarm_admin
         └───static # CSS, JavaScript, png... any static files
         └───templates # HTML
-            └───dashboard.html
-            └───user.html
-            └───edge.html
+            |   dashboard.html
+            |   user.html
+            |   edge.html
+            |   ...
         |   ...
+    |   manage.py
+    |   ...
 ```
 ## Run Website
 ```linux
