@@ -18,6 +18,14 @@ class User(models.Model):
     def __str__(self):
         return f'{self.id} ({self.username})'
 
+class EdgeProvider(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular user')
+    username = models.CharField(max_length=200, help_text='Enter the user name')
+    password = models.CharField(max_length=200, help_text='Enter the password')
+
+    def __str__(self):
+        return f'{self.id} ({self.username})'
+
 class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular instance')
     name = models.CharField(max_length=200, help_text='Enter the instance name')
@@ -48,8 +56,8 @@ class Instance(models.Model):
         help_text='Instance type'
     )
     
-    # provider = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, related_name='Instance_provided')
-    # user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, related_name='Instance_using')
+    provider = models.ForeignKey('EdgeProvider', on_delete=models.SET_NULL, null=True, related_name='Instance_provided')
+    user = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, related_name='Instance_using')
 
     def __str__(self):
         return self.name
