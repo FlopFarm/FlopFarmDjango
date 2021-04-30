@@ -48,6 +48,12 @@ and you can browse the website at
 ```
 So far, the login function is not developed. You can skip login by directly clicking the **Flop**Farm title.
 
+## Run Unit Test
+```
+// In flopfarm directory.
+python3 manage.py test
+```
+
 ## Quick Tutorial
 ### Database schema
 ### Loading database
