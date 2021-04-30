@@ -50,7 +50,7 @@ So far, the login function is not developed. You can skip login by directly clic
 
 ## Run Unit Test
 ```
-// In flopfarm directory.
+// In flopfarm directory, should run migrate to ensure data model are correct.
 python3 manage.py test
 ```
 
