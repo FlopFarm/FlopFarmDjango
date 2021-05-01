@@ -53,7 +53,7 @@ class Instance(models.Model):
         choices = STATUS, 
         blank = True, 
         default = 'o', 
-        help_text='Instance type'
+        help_text='Instance status'
     )
     
     provider = models.ForeignKey('EdgeProvider', on_delete=models.SET_NULL, null=True, related_name='Instance_provided')
