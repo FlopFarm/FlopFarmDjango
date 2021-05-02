@@ -137,55 +137,9 @@ FlopFarm | Purchased
             {{ ins.hourly_price }} ETH/hour
           </p>
           {% endif %}
-
-          <div class="card card-general">
-            <div class="card-header">
-              <h3 class="card-title">Place an order</h3>
-            </div>
-            <!-- /.card-header -->
-            <!-- form start -->
-            <form>
-              <div class="card-body">
-                {% if ins.type == "d" %}
-                <p>You need to pay</p>
-                <p style="color: indianred; font-size: 25px">0.1 ETH</p>
-                {% elif ins.type == "c" %}
-                <div class="form-group">
-                  <label>Use time (hour)</label>
-                  <input
-                    id="ExpT{{ ins.id }}"
-                    type="number"
-                    class="form-control"
-                    placeholder="Enter expected use time (in hour)"
-                  />
-                </div>
-                <p>You need to pay</p>
-                <p
-                  id="pay{{ ins.id }}"
-                  style="color: indianred; font-size: 25px"
-                >
-                  0 ETH
-                </p>
-
-                <script>
-                  $(document).ready(function(){
-                    $("#ExpT{{ ins.id }}").change(function(){
-                      t = $("#ExpT{{ ins.id }}").val();
-                      pay = {{ ins.hourly_price }} * t;
-                      pay = pay.toString();
-                      $("#pay{{ ins.id }}").text(pay + " ETH");
-                    });
-                  });
-                </script>
-                {% endif %}
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Buy</button>
-                </div>
-              </div>
-            </form>
+          <div class="card-footer">
+            <a href = "{% url 'buy' ins.id %}" class="btn btn-success">Buy</a>
           </div>
-          <!-- /.card -->
         </div>
         <!-- /.card-body -->
       </div>
