@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block title %}
-FlopFarm | Purchased
+FlopFarm | Market
 {% endblock %}
 
 {% block side_navi %}
@@ -91,6 +91,7 @@ FlopFarm | Purchased
   <div class="col-md-5"></div>
 
   {% for ins in instance %}
+  {% if ins.provider != user %}
   <div class="col-md-5">
     {% if ins.type == "d" %}
     <div class="card card-success shadow-lg collapsed-card">
@@ -146,6 +147,7 @@ FlopFarm | Purchased
       <!-- /.card -->
     </div>
     <!-- /.col -->
+    {% endif %}
     {% endfor %} {% endblock %} {% block js %} {% endblock %}
   </div>
 </div>

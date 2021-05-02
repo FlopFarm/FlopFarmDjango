@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-02 18:31:39
+LastEditTime: 2021-05-02 21:06:46
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/views.py
@@ -28,7 +28,7 @@ def dashboard(request):
 
 @login_required
 def market(request):
-    instance = Instance.objects.all()
+    instance = Instance.objects.filter(status = 'i')
     
     context = {
         'instance' : instance
@@ -38,8 +38,10 @@ def market(request):
 
 @login_required
 def purchased(request):
+    instance = Instance.objects.filter(user = request.user)
+    
     context = {
-
+        'instance' : instance
     }
 
     return render(request, 'purchased.html', context=context)
@@ -60,6 +62,8 @@ def idle_instance(request):
 
     return render(request, 'idle_instance.html', context=context)
 
+import datetime
+
 @login_required
 def buy(request, pk):
     instance = get_object_or_404(Instance, pk=pk)
@@ -70,6 +74,9 @@ def buy(request, pk):
 
         if form.is_valid():
             instance.user = request.user
+            instance.status = 'r'
+            instance.s_time = datetime.datetime.now()
+            instance.e_time = datetime.datetime.now() + datetime.timedelta(hours = form.cleaned_data['expect_time'])
             instance.save()
             return HttpResponseRedirect(reverse('purchased'))
     
