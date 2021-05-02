@@ -1,0 +1,112 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-02 17:16:52
+ * @LastEditTime: 2021-05-02 18:55:46
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /FlopFarmDjango/flopfarm/flopfarm_admin/templates/buy.html
+-->
+{% extends "temp.html" %}
+
+{% load static %}
+
+{% block frontjs %}
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+FlopFarm | Confirm Order
+{% endblock %}
+
+{% block side_navi %}
+{% endblock %}
+
+
+{% block content %}
+  <!-- =========================================================== -->
+  <div class="content-header">
+    <h1>Confirm your order:</h1>
+  </div>
+  <div class="row" id = "Ava_ins">
+
+  <!-- =========================================================== -->
+  <div class="col-md-9">
+    {% if instance.type == "d" %}
+      <div class="card card-success shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+      {% elif instance.type == "c" %}
+      <div class="card card-primary shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+      {% endif %}
+        <div class="card-header">
+          <h3 class="card-title">{{ instance.name }}</h3>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <p style="color:lightseagreen;">{{ instance.get_type_display }}</p>
+
+          {% if ins.type == "d" %}
+          <li>{{ instance.APIinfo }}</li>
+          {% elif instance.type == "c" %}
+          <li>OS: {{ instance.OS }}</li>
+          <li>CPU: {{ instance.CPU }}</li>
+          <li>GPU: {{ instance.GPU }}</li>
+          <li>RAM: {{ instance.RAM }}</li>
+          {% endif %}
+
+          <li>Remarks: {{ instance.remarks }}</li>
+          <p></p>
+          {% if instance.type == "d" %}
+          <p style="color: indianred; font-size: 25px;">{{ instance.API_price }} ETH/access</p>
+          {% elif instance.type == "c" %}
+          <p style="color: indianred; font-size: 25px;">{{ instance.hourly_price }} ETH/hour</p>
+          {% endif %}
+
+          <div class="card card-general">
+            <div class="card-header">
+              <h3 class="card-title">Place an order</h3>
+            </div>
+            </card-header>
+            <!-- form start -->
+            <form action = "" method = "post">
+              {% csrf_token %}
+
+              <div class="card-body">
+        
+              {% if instance.type == "d" %}
+                <p>You need to pay</p>
+                <p style="color: indianred; font-size: 25px;">{{ instance.API_price }} ETH</p>
+              {% elif instance.type == "c" %}
+              
+              {{ form.as_table }}
+        
+              <p>You need to pay</p>
+              <p id = "PAY" style="color: indianred; font-size: 25px;">0 ETH</p>
+              <script>
+                $(document).ready(function(){
+                  $("#id_expect_time").change(function(){
+                    t = $("#id_expect_time").val();
+                    pay = {{ instance.hourly_price }} * t;
+                    pay = pay.toString();
+                    $("#PAY").text(pay + " ETH");
+                  });
+                });
+              </script>
+              {% endif %}
+        
+              <div class="card-footer">
+                <button type="submit" class="btn btn-success">Buy</button>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+  </div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}
