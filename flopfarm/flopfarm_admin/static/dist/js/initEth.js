@@ -191,12 +191,26 @@ $(document).ready( function(){
         // Withdraw certain amount of token. (The balance of receiver in will reduce by 100 Wei in this case and these token will be in receiver's Eth address)
         myContract.methods.withdraw(100).send(WithdrawTransaction);
     }
+
+    function RefreshBalance() {
+        myContract.methods.getBalance(sender).call().then(function (res) {
+          // $("#senB").html.  
+          console.log(res);
+          document.getElementById("senB").innerHTML = web3.utils.fromWei(res);
+        })
+  
+        myContract.methods.getBalance(receiver).call().then(function (res) {
+          // $("#senB").html.  
+          console.log(res);
+          document.getElementById("recB").innerHTML = web3.utils.fromWei(res);
+        })
+      }
     
-    // Bind these function to the button.
+    // Register in global. Next we need to bind these function to the button.
     window.Deposit = Deposit;
     window.Send = Send;
     window.Withdraw = Withdraw;
-
+    window.RefreshBalance = RefreshBalance;
   }); // <-- close properly
   
   
