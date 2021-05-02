@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-01 23:42:53
+LastEditTime: 2021-05-02 14:14:40
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
@@ -55,7 +55,18 @@ class Instance(models.Model):
         default = 'o', 
         help_text='Instance status'
     )
-    
+
+    OS = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the Operating System info')
+    CPU = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the CPU info')
+    GPU = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the GPU info')
+    RAM = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the RAM info')
+    hourly_price = models.FloatField(blank = True, null = True, help_text='Enter the hourly price')
+
+    APIinfo = models.CharField(max_length=200,blank = True, null = True, help_text='Enter the API info')
+    API_price = models.FloatField(blank = True, null = True, help_text='Enter the price per use for API')
+
+    remarks = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the remarks')
+
     provider = models.ForeignKey('EdgeProvider', on_delete=models.SET_NULL, null=True, related_name='Instance_provided')
     user = models.ForeignKey('User', on_delete=models.SET_NULL, blank = True, null=True, related_name='Instance_using')
 

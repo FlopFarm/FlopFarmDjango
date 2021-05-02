@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-01 23:47:48
+LastEditTime: 2021-05-02 00:01:35
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/views.py
@@ -33,5 +33,5 @@ def market(request):
         'instance' : instance
     }
     
-    return render(request, 'market.html', content=context)
+    return render(request, 'market.html', context=context)
     

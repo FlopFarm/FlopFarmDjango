@@ -1,464 +1,179 @@
 {% extends "temp.html" %}
 
-{% block title %}
+{% load static %}
 
+{% block frontjs %}
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
 {% endblock %}
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+{% block title %}
+FlopFarm | Market
+{% endblock %}
+
+{% block side_navi %}
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+      <li class="nav-item">
+        <a href="{% url 'dashboard' %}" class="nav-link">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>Dashboard&#128640;</p>
+        </a>
+      </li>
+      <li class="nav-item menu-open">
+        <a href="edge.html" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>
+            Edge
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Launch Pad &#128640;</p>
+            <a href="edge.html" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Idle Instance</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="edge.html" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
-              <p>
-                Provider
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link active">
-              <i class="far fa-circle nav-icon"></i>
-              <p>
-                User
-              </p>
+              <p>Running Instance</p>
             </a>
           </li>
         </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+      </li>
+      <li class="nav-item menu-open">
+        <a href="user.html" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>
+            User
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{% url 'market' %}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Market</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="user.html" class="nav-link active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Purchased</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+{% endblock %}
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>User Panel</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">User panel</a></li>
-              <!-- <li class="breadcrumb-item active">Widgets</li> -->
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- =========================================================== -->
-        <h5 class="mb-2">Available Instances on FlopFarm</h5>
-        <div class="row" id = "Ava_ins">
-
-          <div class="col-md-5">
-            <div class="card card-primary shadow-lg collapsed-card"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Leblanc's Primary Instance</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:cornflowerblue;">General Computing Instance</p>
-                <li>OS: Windows 10</li>
-                <li>CPU: Intel Core i7-9700f</li>
-                <li>GPU: Nvidia RTX3080 10G</li>
-                <li>RAM: DDR4 2666 16G</li>
-                <li>Remarks: Pytorch 3.10, CUDA 11 ready</li>
-                <p></p>
-                <p style="color: indianred; font-size: 25px;">5 ETH/h</p>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Place an order</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <div class="form-group">
-                        <label >Use time (hour)</label>
-                        <input type="number" class="form-control" placeholder="Enter expected use time (in hour)">
-                      </div>
-
-                      <p>You need to pay</p>
-                      <p style="color: indianred; font-size: 25px;">0 ETH</p>
-
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-5">
-            <div class="card card-success shadow-lg collapsed-card"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">DeepAnime API</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:lightseagreen;">Deep Learning API</p>
-                <li>Reshape your favorite avatar in anime style!</li>
-                <img class="card-img-top" src="dist/img/AnimeAPI.webp" alt="AnimeAPI">
-                <li>Remark: Please keep your picture size under 10MB</li>
-                <p></p>
-                <p style="color: indianred; font-size: 25px;">0.1 ETH/access</p>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Place an order</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <div class="form-group">
-                        <label for="exampleInputFile">File input</label>
-                        <div class="input-group">
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                          </div>
-                          <div class="input-group-append">
-                            <span class="input-group-text">Upload</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <p>You need to pay</p>
-                      <p style="color: indianred; font-size: 25px;">0.1 ETH</p>
-
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-        </div>
-        <!-- /.row -->
-
-        <h5 class="mb-2">Instances You are Using</h5>
-        <div class="row" id = "Run_ins">
-
-          <div class="col-md-5">
-            <div class="card card-primary shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Waiting Payment Instance</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:cornflowerblue;">General Computing Instance</p>
-                <li>OS: Windows 10</li>
-                <li>CPU: Intel Core i7-9700f</li>
-                <li>GPU: Nvidia RTX3080 10G</li>
-                <li>RAM: DDR4 2666 16G</li>
-                <li>Remarks: Pytorch 3.10, CUDA 11 ready</li>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Order detail</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <p>Order ID: 12345</p>
-                      <b>Status: waiting for payment</b>
-                      <p>Remaining time: <b>60min</b></p>
-                      <p>You need to pay</p>
-                      <p style="color: indianred; font-size: 25px;">5 ETH</p>
-                      <p>Provider address: 121newkjhb2rpur1rbfy1r92fge</p>
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-success">I Have Paid</button>
-                      <button type="submit" class="btn btn-danger">Cancel Order</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-5">
-            <div class="card card-primary shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Using Instance</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:cornflowerblue;">General Computing Instance</p>
-                <li>OS: Windows 10</li>
-                <li>CPU: Intel Core i7-9700f</li>
-                <li>GPU: Nvidia RTX3080 10G</li>
-                <li>RAM: DDR4 2666 16G</li>
-                <li>Remarks: Pytorch 3.10, CUDA 11 ready</li>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Order detail</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <p>Order ID: 12345</p>
-                      <b>Status: running</b>
-                      <p>Remaining time: <b>45mins</b></p>
-                      <li>Address: 192.168.22.22:8888</li>
-                      <li>User name: root</li>
-                      <li>Password: 123456</li>
-
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-danger">Stop Instance</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-5">
-            <div class="card card-success shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Waiting Payment API</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:lightseagreen;">Deep Learning API</p>
-                <li>Reshape your favorite avatar in anime style!</li>
-                <img class="card-img-top" src="dist/img/AnimeAPI.webp" alt="AnimeAPI">
-                <li>Remark: Please keep your picture size under 10MB</li>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Order detail</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <p>Order ID: 12345</p>
-                      <b>Status: waiting for payment</b>
-                      <p>You need to pay</p>
-                      <p style="color: indianred; font-size: 25px;">0.1 ETH</p>
-                      <p>Provider address: 121newkjhb2rpur1rbfy1r92fge</p>
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-success">I Have Paid</button>
-                      <button type="submit" class="btn btn-danger">Cancel Order</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-5">
-            <div class="card card-success shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Processing API</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:lightseagreen;">Deep Learning API</p>
-                <li>Reshape your favorite avatar in anime style!</li>
-                <img class="card-img-top" src="dist/img/AnimeAPI.webp" alt="AnimeAPI">
-                <li>Remark: Please keep your picture size under 10MB</li>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Order detail</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <p>Order ID: 12345</p>
-                      <b>Status: processing</b>
-                      <p>Your file is currently processing...</p>
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-danger">Cancel Order</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-5">
-            <div class="card card-success shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-              <div class="card-header">
-                <h3 class="card-title">Finished API</h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                </div>
-                <!-- /.card-tools -->
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <p style="color:lightseagreen;">Deep Learning API</p>
-                <li>Reshape your favorite avatar in anime style!</li>
-                <img class="card-img-top" src="dist/img/AnimeAPI.webp" alt="AnimeAPI">
-                <li>Remark: Please keep your picture size under 10MB</li>
-
-                <!-- general form elements -->
-                <div class="card card-general">
-                  <div class="card-header">
-                    <h3 class="card-title">Order detail</h3>
-                  </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form>
-                    <div class="card-body">
-                      <p>Order ID: 12345</p>
-                      <b>Status: Finished</b>
-                      <p><a href = "#">File link</a></p>
-                    </div>
-                    <!-- /.card-body -->
-
-                    <div class="card-footer">
-                      <button type="submit" class="btn btn-success">End Order</button>
-                    </div>
-                  </form>
-                </div>
-                <!-- /.card -->
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-
-    <a id="back-to-top" href="#" class="btn btn-primary back-to-top" role="button" aria-label="Scroll to top">
-      <i class="fas fa-chevron-up"></i>
-    </a>
+{% block content %}
+  <!-- =========================================================== -->
+  <div class="content-header">
+    <h1>Market</h1>
   </div>
-  <!-- /.content-wrapper -->
+  <div class="row" id = "Ava_ins">
 
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.1.0
+  <!-- =========================================================== -->
+  <h5 class="mb-2">Available Instances on FlopFarm</h5>
+  <div class="col-md-5"></div>
+
+  {% for ins in instance %}
+    <div class="col-md-5">
+      {% if ins.type == "d" %}
+      <div class="card card-success shadow-lg collapsed-card"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+      {% elif ins.type == "c" %}
+      <div class="card card-primary shadow-lg collapsed-card"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+      {% endif %}
+        <div class="card-header">
+          <h3 class="card-title">{{ ins.name }}</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i></button>
+          </div>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <p style="color:lightseagreen;">{{ ins.get_type_display }}</p>
+
+          {% if ins.type == "d" %}
+          <li>{{ ins.APIinfo }}</li>
+          {% elif ins.type == "c" %}
+          <li>OS: {{ ins.OS }}</li>
+          <li>CPU: {{ ins.CPU }}</li>
+          <li>GPU: {{ ins.GPU }}</li>
+          <li>RAM: {{ ins.RAM }}</li>
+          {% endif %}
+
+          <li>Remarks: {{ ins.remarks }}</li>
+          <p></p>
+
+          {% if ins.type == "d" %}
+          <p style="color: indianred; font-size: 25px;">{{ ins.API_price }} ETH/access</p>
+          {% elif ins.type == "c" %}
+          <p style="color: indianred; font-size: 25px;">{{ ins.hourly_price }} ETH/hour</p>
+          {% endif %}
+
+          <div class="card card-general">
+            <div class="card-header">
+              <h3 class="card-title">Place an order</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form>
+              <div class="card-body">
+
+              {% if ins.type == "d" %}
+                <p>You need to pay</p>
+                <p style="color: indianred; font-size: 25px;">0.1 ETH</p>
+              {% elif ins.type == "c" %}
+                <div class="form-group">
+                  <label >Use time (hour)</label>
+                  <input id = "ExpT{{ ins.id }}" type="number" class="form-control" placeholder="Enter expected use time (in hour)">
+                </div>
+                <p>You need to pay</p>
+                <p id = "pay{{ ins.id }}" style="color: indianred; font-size: 25px;">0 ETH</p>
+
+                <script>
+                  $(document).ready(function(){
+                    $("#ExpT{{ ins.id }}").change(function(){
+                      console.log("Change!");
+                      t = $("#ExpT{{ ins.id }}").val();
+                      pay = {{ ins.hourly_price }} * t;
+                      pay = pay.toString();
+                      $("#pay{{ ins.id }}").text(pay + " ETH");
+                    });
+                  });
+                </script>
+              {% endif %}
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-success">Buy</button>
+                </div>
+
+              </div>
+            </form>
+            
+          </div>
+          <!-- /.card -->
+
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
     </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+    <!-- /.col -->
+  {% endfor %}
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
+{% endblock %}
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- User.js -->
-<script src="dist/js/user.js"></script>
-</body>
-</html>
+{% block js %}
+{% endblock %}
