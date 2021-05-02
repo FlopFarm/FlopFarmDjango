@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-02 18:31:39
+LastEditTime: 2021-05-02 19:32:03
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/views.py
