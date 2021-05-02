@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-02 17:51:55
+LastEditTime: 2021-05-02 21:19:10
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
@@ -9,6 +9,8 @@ FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
 from django.db import models
 import uuid
 from django.contrib.auth.models import User
+import datetime
+
 
 # Create your models here.
 # class User(models.Model):
@@ -62,6 +64,11 @@ class Instance(models.Model):
     GPU = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the GPU info')
     RAM = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the RAM info')
     hourly_price = models.FloatField(blank = True, null = True, help_text='Enter the hourly price')
+    s_time = models.DateTimeField(blank = True, null = True, help_text = 'Start running time')
+    e_time = models.DateTimeField(blank = True, null = True, help_text = 'end running time')
+    IP = models.CharField(max_length=200, blank = True, null = True, help_text='Enter IP')
+    username = models.CharField(max_length=200, blank = True, null = True, help_text='Enter SSH user name')
+    password = models.CharField(max_length=200, blank = True, null = True, help_text='Enter SSH password')
 
     APIinfo = models.CharField(max_length=200,blank = True, null = True, help_text='Enter the API info')
     API_price = models.FloatField(blank = True, null = True, help_text='Enter the price per use for API')
@@ -70,6 +77,10 @@ class Instance(models.Model):
 
     provider = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='Instance_provided')
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null=True, related_name='Instance_using')
+
+    def get_remaining_time(self):
+        tzinfo = datetime.timezone(datetime.timedelta(hours = 8))
+        return self.e_time - datetime.datetime.now(tzinfo)
 
     def __str__(self):
         return self.name
