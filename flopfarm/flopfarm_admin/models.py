@@ -1,30 +1,31 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-02 14:14:40
+LastEditTime: 2021-05-02 17:51:55
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
 '''
 from django.db import models
 import uuid
+from django.contrib.auth.models import User
 
 # Create your models here.
-class User(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular user')
-    username = models.CharField(max_length=200, help_text='Enter the user name')
-    password = models.CharField(max_length=200, help_text='Enter the password')
+# class User(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular user')
+#     username = models.CharField(max_length=200, help_text='Enter the user name')
+#     password = models.CharField(max_length=200, help_text='Enter the password')
 
-    def __str__(self):
-        return f'{self.username} ({self.id})'
+#     def __str__(self):
+#         return f'{self.username} ({self.id})'
 
-class EdgeProvider(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular user')
-    username = models.CharField(max_length=200, help_text='Enter the user name')
-    password = models.CharField(max_length=200, help_text='Enter the password')
+# class EdgeProvider(models.Model):
+#     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular user')
+#     username = models.CharField(max_length=200, help_text='Enter the user name')
+#     password = models.CharField(max_length=200, help_text='Enter the password')
 
-    def __str__(self):
-        return f'{self.username} ({self.id})'
+#     def __str__(self):
+#         return f'{self.username} ({self.id})'
 
 class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular instance')
@@ -67,8 +68,8 @@ class Instance(models.Model):
 
     remarks = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the remarks')
 
-    provider = models.ForeignKey('EdgeProvider', on_delete=models.SET_NULL, null=True, related_name='Instance_provided')
-    user = models.ForeignKey('User', on_delete=models.SET_NULL, blank = True, null=True, related_name='Instance_using')
+    provider = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='Instance_provided')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank = True, null=True, related_name='Instance_using')
 
     def __str__(self):
         return self.name
