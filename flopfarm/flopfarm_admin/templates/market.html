@@ -145,7 +145,6 @@ FlopFarm | Market
                 <script>
                   $(document).ready(function(){
                     $("#ExpT{{ ins.id }}").change(function(){
-                      console.log("Change!");
                       t = $("#ExpT{{ ins.id }}").val();
                       pay = {{ ins.hourly_price }} * t;
                       pay = pay.toString();

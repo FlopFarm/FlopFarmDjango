@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:23:40
-LastEditTime: 2021-04-29 21:32:35
+LastEditTime: 2021-05-02 15:57:15
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm/urls.py
@@ -47,3 +47,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+#Add Django site authentication urls (for login, logout, password management)
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
