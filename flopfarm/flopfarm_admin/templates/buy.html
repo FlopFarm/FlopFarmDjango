@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-02 17:16:52
- * @LastEditTime: 2021-05-02 18:55:46
+ * @LastEditTime: 2021-05-02 20:22:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /FlopFarmDjango/flopfarm/flopfarm_admin/templates/buy.html
@@ -45,7 +45,7 @@ FlopFarm | Confirm Order
         <div class="card-body">
           <p style="color:lightseagreen;">{{ instance.get_type_display }}</p>
 
-          {% if ins.type == "d" %}
+          {% if instance.type == "d" %}
           <li>{{ instance.APIinfo }}</li>
           {% elif instance.type == "c" %}
           <li>OS: {{ instance.OS }}</li>
@@ -74,6 +74,9 @@ FlopFarm | Confirm Order
               <div class="card-body">
         
               {% if instance.type == "d" %}
+
+              <!-- {{ form.as_table }} -->
+
                 <p>You need to pay</p>
                 <p style="color: indianred; font-size: 25px;">{{ instance.API_price }} ETH</p>
               {% elif instance.type == "c" %}
