@@ -186,10 +186,10 @@ $(document).ready( function(){
     
     function Withdraw() {
         WithdrawTransaction = ({
-            from: receiver
+            from: sender
         })
         // Withdraw all tokens
-        myContract.methods.getBalance(receiver).call().then(function (res) {
+        myContract.methods.getBalance(sender).call().then(function (res) {
           myContract.methods.withdraw(res).send(WithdrawTransaction);
         })
         
