@@ -20,6 +20,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
 </head>
 <body class="hold-transition sidebar-mini">
+
+  <!-- REQUIRED SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+  <!-- Bootstrap 4 -->
+  <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- AdminLTE App -->
+  <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+  <!-- Web3JS -->
+  <script src="{% static 'plugins/web3js/web3.min.js' %}"></script>
+  <script src="{% static 'dist/js/initEth.js' %}"></script>
+  {% block js %}
+{% endblock %}
+
 {% block frontjs %}
 {% endblock %}
 <div class="wrapper">
@@ -63,11 +78,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class= "info">
-          <a class="d-block">Balance: NAN ETH</a>
+        <div class= "info" classs="d-block">
+          Balance: <a class="d-block" id="senB" onclick="RefreshBalance()">NAN</a> ETH
         </div>
         <div class="info">
-          <button class="btn btn-primary">Deposit</button>
+          <button class="btn btn-primary" onclick="Deposit()">Deposit</button>
         </div>
       </div>
 
@@ -105,20 +120,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content -->
 
 
-
-<!-- REQUIRED SCRIPTS -->
-
-
-<!-- jQuery -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-<!-- Web3JS -->
-<script src="{% static 'plugins/web3js/web3.min.js' %}"></script>
-<script src="{% static 'dist/js/initEth.js' %}"></script>
-{% block js %}
-{% endblock %}
 </body>
 </html>
