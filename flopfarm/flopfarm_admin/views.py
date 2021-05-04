@@ -24,10 +24,11 @@ from django.urls import reverse_lazy
 
 @login_required
 def dashboard(request):
+    instance = Instance.objects.filter(status = 'i')
+    
     context = {
-
+        'instance' : instance
     }
-
     return render(request, 'dashboard.html', context=context)
 
 @login_required
@@ -52,16 +53,20 @@ def purchased(request):
 
 @login_required
 def running_instance(request):
+    instance = Instance.objects.filter(status = 'i')
+    
     context = {
-
+        'instance' : instance
     }
 
     return render(request, 'running_instance.html', context=context)
 
 @login_required
 def idle_instance(request):
+    instance = Instance.objects.filter(status = 'i')
+    
     context = {
-
+        'instance' : instance
     }
 
     return render(request, 'idle_instance.html', context=context)

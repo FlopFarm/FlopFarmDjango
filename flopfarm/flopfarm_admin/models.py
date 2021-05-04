@@ -20,6 +20,7 @@ class Instance(models.Model):
     )
 
     STATUS = (
+        ('o', 'offline'),
         ('i', 'Idle'),
         ('r', 'Running'),
     )
@@ -39,6 +40,7 @@ class Instance(models.Model):
         default = 'i', 
         help_text='Instance status'
     )
+
 
     OS = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the Operating System info')
     CPU = models.CharField(max_length=200, blank = True, null = True, help_text='Enter the CPU info')
