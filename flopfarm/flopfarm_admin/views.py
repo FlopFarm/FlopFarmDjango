@@ -63,7 +63,7 @@ def purchased(request):
 
 @login_required
 def running_instance(request):
-    instance = Instance.objects.filter(status = 'i')
+    instance = Instance.objects.filter(status = 'r')
     
     context = {
         'instance' : instance

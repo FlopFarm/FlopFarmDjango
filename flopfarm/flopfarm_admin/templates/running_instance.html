@@ -18,7 +18,7 @@
       </a>
     </li>
     <li class="nav-item menu-open">
-      <a href="edge.html" class="nav-link">
+      <a href="{% url 'dashboard' %}" class="nav-link">
         <i class="far fa-circle nav-icon"></i>
         <p>
           Edge
@@ -73,7 +73,7 @@
 </div>
 <div class="row" id="Ava_ins">
   {% for ins in instance %}
-  {% if ins.status == "i" %}
+  {% if ins.status == "r" %}
   <div class="col-md-5">
     {% if ins.type == "d" %}
     <div class="card card-success shadow-lg ">
