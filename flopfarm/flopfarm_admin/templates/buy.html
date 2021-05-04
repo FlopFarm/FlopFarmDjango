@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-05-02 17:16:52
- * @LastEditTime: 2021-05-02 20:22:04
+ * @LastEditTime: 2021-05-03 20:32:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /FlopFarmDjango/flopfarm/flopfarm_admin/templates/buy.html
@@ -154,9 +154,9 @@ FlopFarm | Confirm Order
                 $(document).ready(function(){
                   $("#id_expect_time").change(function(){
                     t = $("#id_expect_time").val();
-                    pay = {{ instance.hourly_price }} * t;
-                    pay = pay.toString();
-                    $("#PAY").text(pay + " ETH");
+                    window.pay = {{ instance.hourly_price }} * t;
+                    paystr = pay.toString();
+                    $("#PAY").text(paystr + " ETH");
                   });
                 });
               </script>

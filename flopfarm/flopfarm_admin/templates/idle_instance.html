@@ -68,8 +68,14 @@
 <!-- /.sidebar-menu -->
 <!-- /.sidebar-menu -->
 {% endblock %} {% block content %}
-<div class="row" id = "Ava_ins">
+<div class="content-header">
+  <h1>My Idle Instance</h1>
+</div>
+<div class="content-header">
+  <a href="{% url 'upload' %}" class="btn btn-success">Upload New Edge</a>
+</div>
 
+<div class="row" id = "Ava_ins">
   <div class="col-md-5">
     <div class="card card-primary shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
       <div class="card-header">

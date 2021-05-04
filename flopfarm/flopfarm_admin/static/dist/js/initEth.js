@@ -160,9 +160,9 @@ $(document).ready( function(){
       }
     ];
     
-    window.sender = "0x556C3a1Fc439709CaE2a1795540Cf6094fd3f78F";
+    window.sender = "0xaAf0Adf96D40B28C850d748413F78C1626DE5A55";
     window.SSaddress = "0xD22ABaFA4C81eC8C2f659b17Eb4cC29DdeecEfbb"; 
-    window.receiver = "0x8b2701428Aa6169B590B1b08749dd63A5D272456";
+    window.receiver = "0x100734A406a1d6a4F77e459724f0190664C51B8B";
     window.myContract = new web3.eth.Contract(ABI, SSaddress);
 
     function Deposit() {
@@ -181,7 +181,8 @@ $(document).ready( function(){
             from: sender
         });
         // send 100 Wei from sender. (The balance of sender will subtract 100 Wei and receiver will add 100 Wei)
-        myContract.methods.send(receiver, 100).send(SendTransaction);
+        console.log(window.pay.toString());
+        myContract.methods.send(receiver, web3.utils.toWei(window.pay.toString(), "ether")).send(SendTransaction);
     }
     
     function Withdraw() {

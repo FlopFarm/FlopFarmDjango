@@ -1,0 +1,185 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-05-04 12:50:33
+ * @LastEditTime: 2021-05-04 13:33:23
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /Group Project/FlopFarmDjango/flopfarm/flopfarm_admin/templates/flopfarm_admin/instance_form.html
+-->
+
+{% extends "temp.html" %}
+
+{% load static %}
+
+{% block frontjs %}
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+FlopFarm | Upload Edge
+{% endblock %}
+
+{% block side_navi %}
+<!-- Sidebar Menu -->
+<nav class="mt-2">
+  <ul
+    class="nav nav-pills nav-sidebar flex-column"
+    data-widget="treeview"
+    role="menu"
+    data-accordion="false"
+  >
+    <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+    <li class="nav-item">
+      <a href="{% url 'dashboard' %}" class="nav-link">
+        <i class="nav-icon fas fa-tachometer-alt"></i>
+        <p>Dashboard&#128640;</p>
+      </a>
+    </li>
+    <li class="nav-item menu-open">
+      <a href="edge.html" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>
+          Edge
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{% url 'idle_instance' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Idle Instance</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'running_instance' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Running Instance</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="nav-item menu-open">
+      <a href="{% url 'market' %}" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p>
+          User
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{% url 'market' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Market</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'purchased' %}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Purchased</p>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- /.sidebar-menu -->
+{% endblock %}
+
+
+{% block content %}
+  <!-- =========================================================== -->
+  <div class="content-header">
+    <h1>Upload New Edge</h1>
+  </div>
+  <div class="row" id = "Ava_ins">
+  <!-- =========================================================== -->
+  <div class="col-md-9">
+    <div class="card card-general">
+    <div class="card-header">
+        <h3 class="card-title">Input Edge Info</h3>
+    </div>
+    <!-- form start -->
+    <form action = "" method = "post">
+        {% csrf_token %}
+        <div class="card-body">
+            {% for field in form %}
+            <div class="fieldWrapper" id={{field.label}}>
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+    {% endfor %}
+        <script>
+            $(document).ready(function(){
+                t = $("#id_type").val()
+                    if (t == 'c'){
+                        $("#APIinfo").hide()
+                        $("#API").hide()
+                        
+                        $("#OS").show()
+                        $("#CPU").show()
+                        $("#GPU").show()
+                        $("#RAM").show()
+                        $("#Hourly").show()
+                        $("#IP").show()
+                        $("#Username").show()
+                        $("#Password").show()
+
+                    } else if (t == 'd'){
+                        $("#OS").hide()
+                        $("#CPU").hide()
+                        $("#GPU").hide()
+                        $("#RAM").hide()
+                        $("#Hourly").hide()
+                        $("#IP").hide()
+                        $("#Username").hide()
+                        $("#Password").hide()
+
+                        $("#APIinfo").show()
+                        $("#API").show()
+                    }
+                $("#id_type").change(function(){
+                    t = $("#id_type").val()
+                    if (t == 'c'){
+                        $("#APIinfo").hide()
+                        $("#API").hide()
+                        
+                        $("#OS").show()
+                        $("#CPU").show()
+                        $("#GPU").show()
+                        $("#RAM").show()
+                        $("#Hourly").show()
+                        $("#IP").show()
+                        $("#Username").show()
+                        $("#Password").show()
+
+                    } else if (t == 'd'){
+                        $("#OS").hide()
+                        $("#CPU").hide()
+                        $("#GPU").hide()
+                        $("#RAM").hide()
+                        $("#Hourly").hide()
+                        $("#IP").hide()
+                        $("#Username").hide()
+                        $("#Password").hide()
+
+                        $("#APIinfo").show()
+                        $("#API").show()
+                    }
+                });
+            });
+        </script>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-success">Upload</button>
+        </div>
+        </div>
+    </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

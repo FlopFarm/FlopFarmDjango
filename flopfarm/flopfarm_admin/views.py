@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-02 21:06:46
+LastEditTime: 2021-05-04 13:16:56
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/views.py
@@ -17,6 +17,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from .forms import BuyInstanceForm
+
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+
 
 @login_required
 def dashboard(request):
@@ -90,5 +94,17 @@ def buy(request, pk):
     }
 
     return render(request, 'buy.html', context = context)
+
+from django import http
+
+class upload(CreateView):
+    model = Instance
+    fields = ['type', 'name', 'OS', 'CPU', 'GPU', 'RAM', 'hourly_price', 'IP', 'username', 'password', 'APIinfo', 'API_price', 'remarks']
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.provider = self.request.user
+        obj.save()     
+        return http.HttpResponseRedirect(reverse('idle_instance'))
 
 
