@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-04 13:21:23
+LastEditTime: 2021-05-04 14:10:14
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
@@ -10,6 +10,13 @@ from django.db import models
 import uuid
 from django.contrib.auth.models import User
 import datetime
+
+from django.db.models.deletion import CASCADE
+
+class ETHaddress(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=200, blank = True, null = True, help_text='The ETH Address')
+
 class Instance(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for this particular instance')
     name = models.CharField(max_length=200, help_text='Enter the instance name')
