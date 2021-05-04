@@ -160,13 +160,13 @@ $(document).ready( function(){
       }
     ];
     
-    window.sender = "0xaAf0Adf96D40B28C850d748413F78C1626DE5A55";
     window.SSaddress = "0xD22ABaFA4C81eC8C2f659b17Eb4cC29DdeecEfbb"; 
     window.receiver = "0x100734A406a1d6a4F77e459724f0190664C51B8B";
     window.myContract = new web3.eth.Contract(ABI, SSaddress);
 
     function Deposit() {
         console.log("InDeposit");
+        console.log(sender);
         DepositTransaction = ({
             from: sender,
             to: SSaddress, // smart contract address
@@ -177,6 +177,7 @@ $(document).ready( function(){
     }
     
     function Send() {
+      console.log(sender);
         SendTransaction = ({
             from: sender
         });
@@ -189,6 +190,8 @@ $(document).ready( function(){
         WithdrawTransaction = ({
             from: sender
         })
+        console.log("Withdraw!");
+        console.log(sender);
         // Withdraw all tokens
         myContract.methods.getBalance(sender).call().then(function (res) {
           myContract.methods.withdraw(res).send(WithdrawTransaction);
@@ -197,8 +200,10 @@ $(document).ready( function(){
     }
 
     function RefreshBalance() {
+      console.log("Refresh Balance!");
+      console.log(sender);
         myContract.methods.getBalance(sender).call().then(function (res) {
-          // $("#senB").html.  
+          // $("#senB").html.
           console.log(res);
           document.getElementById("senB").innerHTML = web3.utils.fromWei(res);
         })
@@ -215,6 +220,8 @@ $(document).ready( function(){
     window.Send = Send;
     window.Withdraw = Withdraw;
     window.RefreshBalance = RefreshBalance;
+
+    RefreshBalance()
   }); // <-- close properly
   
   
