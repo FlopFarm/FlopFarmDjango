@@ -1,16 +1,14 @@
 '''
 Author: your name
 Date: 2021-05-02 16:52:59
-LastEditTime: 2021-05-02 18:34:32
+LastEditTime: 2021-05-04 12:55:44
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmDjango/flopfarm/flopfarm_admin/forms.py
 '''
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
-
-
+from django.utils.translation import ugettext_lazy as _ 
 class BuyInstanceForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
