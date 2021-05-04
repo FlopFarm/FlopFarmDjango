@@ -35,8 +35,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   {% block js %}
 {% endblock %}
 
+<script>
+  window.sender = "{{address}}";
+  console.log("ADDRESS!");
+  console.log(window.sender);
+</script>
+
 {% block frontjs %}
 {% endblock %}
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -78,11 +85,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class= "info" classs="d-block">
-          Balance: <a class="d-block" id="senB" onclick="RefreshBalance()">NAN</a> ETH
+        <div class= "info" style="color: aquamarine;">
+          Balance <a id="senB" class="d-block" onclick="RefreshBalance()">NAN</a> ETH
         </div>
+      </div>
+
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <button class="btn btn-primary" onclick="Deposit()">Deposit</button>
+          <button class="btn btn-primary" onclick="Deposit()">Deposit 1 ETH</button>
         </div>
         <div class="info">
           <button class="btn btn-primary" onclick="Withdraw()">Withdraw</button>
@@ -121,7 +131,5 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-
-
 </body>
 </html>
