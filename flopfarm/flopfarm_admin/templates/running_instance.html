@@ -73,7 +73,6 @@
 </div>
 <div class="row" id="Ava_ins">
   {% for ins in instance %}
-  {% if ins.provider == user %}
   {% if ins.status == "i" %}
   <div class="col-md-5">
     {% if ins.type == "d" %}
@@ -122,11 +121,7 @@
           </p>
           {% endif %}
           <div class="card-footer">
-            {% if ins.status == "o" %}
-            <button type="submit" class="btn btn-success">go online</button>
-            {% elif ins.status == "i" %}
-            <button type="submit" class="btn btn-danger">go offline</button>
-            {% endif %}
+            <button type="submit" class="btn btn-danger">terminate</button>
           </div>
         </div>
         <!-- /.card-body -->
@@ -135,90 +130,8 @@
     </div>
     <!-- /.col -->
     {% endif %}
-    {% endif %}
     {% endfor %} 
 
-  <div class="col-md-5">
-    <div class="card card-primary shadow-lg">
-      <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-      <div class="card-header">
-        <h3 class="card-title">Leblanc's Primary Instance</h3>
-        <div class="card-tools">
-          <button
-            type="button"
-            class="btn btn-tool"
-            data-card-widget="collapse"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <!-- /.card-tools -->
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <p style="color: cornflowerblue">General Computing Instance</p>
-        <p style="color: rgba(19, 75, 194, 0.692); font-size: 20px">
-          Status: online
-        </p>
-        <li>OS: Windows 10</li>
-        <li>CPU: Intel Core i7-9700f</li>
-        <li>GPU: Nvidia RTX3080 10G</li>
-        <li>RAM: DDR4 2666 16G</li>
-        <li>Remarks: Pytorch 3.10, CUDA 11 ready</li>
-        <p></p>
-        <p style="color: indianred; font-size: 25px">Pricing: 5 ETH/h</p>
-        <li>Last Time used: 2020.5.1 20:00 UTC+8</li>
-        <li>Revenue: 0.88 ETH</li>
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-        <button type="submit" class="btn btn-danger">terminate</button>
-      </div>
-      <!-- /.card-footer -->
-    </div>
-    <!-- /.card -->
-  </div>  <!-- /.col -->
-
-  <div class="col-md-5">
-    <div class="card card-success shadow-lg">
-      <!--Change color here: default, primary, secondary, success, info, danger, warning-->
-      <div class="card-header">
-        <h3 class="card-title">DeepAnime</h3>
-        <div class="card-tools">
-          <button
-            type="button"
-            class="btn btn-tool"
-            data-card-widget="collapse"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        <!-- /.card-tools -->
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <p style="color: lightseagreen">Deep Learning API</p>
-        <p style="color: rgba(11, 83, 4, 0.692); font-size: 20px">
-          Status: offline
-        </p>
-        <li>Reshape your favorite avatar in anime style!</li>
-        <img class="card-img-top" src="dist/img/AnimeAPI.webp" alt="AnimeAPI" />
-        <li>Remark: Please keep your picture size under 10MB</li>
-        <p></p>
-        <p style="color: indianred; font-size: 25px">0.1 ETH/access</p>
-        <p style="color: indianred; font-size: 25px">Pricing: 5 ETH/image</p>
-        <li>Last Time used: 2020.5.1 20:00 UTC+8</li>
-        <li>Revenue: 0.88 ETH</li>
-      </div>
-      <!-- /.card-body -->
-      <div class="card-footer">
-        <button type="submit" class="btn btn-danger">terminate</button>
-      </div>
-      <!-- /.card-footer -->
-    </div>
-    <!-- /.card -->
-  </div>
-  <!-- /.col -->
 </div>
 <!-- /.row -->
 
