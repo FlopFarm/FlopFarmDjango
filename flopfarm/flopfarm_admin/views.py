@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-04 14:15:39
+LastEditTime: 2021-05-04 17:33:56
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/views.py
@@ -29,6 +29,10 @@ def dashboard(request):
     context = {
         'instance' : instance
     }
+
+    address = ETHaddress.objects.filter(user = request.user)
+    context['address'] = address[0].address
+
     return render(request, 'dashboard.html', context=context)
 
 @login_required
