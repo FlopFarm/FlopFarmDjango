@@ -91,6 +91,7 @@ FlopFarm | Market
 
   {% for ins in instance %}
   {% if ins.provider != user %}
+  {% if ins.type == "c" %}
   <div class="col-md-5">
     {% if ins.type == "d" %}
     <div class="card card-success shadow-lg ">
@@ -150,6 +151,73 @@ FlopFarm | Market
     </div>
     <!-- /.col -->
     {% endif %}
-    {% endfor %} {% endblock %} {% block js %} {% endblock %}
+    {% endif %}
+    {% endfor %}
+
+    {% for ins in instance %}
+    {% if ins.provider != user %}
+    {% if ins.type == "d" %}
+    <div class="col-md-5">
+      {% if ins.type == "d" %}
+      <div class="card card-success shadow-lg ">
+        <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+        {% elif ins.type == "c" %}
+        <div class="card card-primary shadow-lg ">
+          <!--Change color here: default, primary, secondary, success, info, danger, warning-->
+          {% endif %}
+          <div class="card-header">
+            <h3 class="card-title">{{ ins.name }}</h3>
+            <div class="card-tools">
+              <button
+                type="button"
+                class="btn btn-tool"
+                data-card-widget="collapse"
+              >
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <p style="color: lightseagreen">{{ ins.get_type_display }}</p>
+  
+            {% if ins.type == "d" %}
+            <li>{{ ins.APIinfo }}</li>
+            <img class="card-img-top"   height="350" 
+            src="{% static 'img/AnimeAPI.webp' %}" alt="AnimeAPI">
+  
+            {% elif ins.type == "c" %}
+            <li>OS: {{ ins.OS }}</li>
+            <li>CPU: {{ ins.CPU }}</li>
+            <li>GPU: {{ ins.GPU }}</li>
+            <li>RAM: {{ ins.RAM }}</li>
+            {% endif %}
+  
+            <li>Remarks: {{ ins.remarks }}</li>
+            <p></p>
+  
+            {% if ins.type == "d" %}
+            <p style="color: indianred; font-size: 25px">
+              {{ ins.API_price }} ETH/access
+            </p>
+            {% elif ins.type == "c" %}
+            <p style="color: indianred; font-size: 25px">
+              {{ ins.hourly_price }} ETH/hour
+            </p>
+            {% endif %}
+            <div class="card-footer">
+              <a href = "{% url 'buy' ins.id %}" class="btn btn-success">Buy</a>
+            </div>
+          </div>
+          <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+      {% endif %}
+      {% endif %}
+      {% endfor %}
+    {% endblock %} {% block js %} {% endblock %}
   </div>
 </div>
