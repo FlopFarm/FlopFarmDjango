@@ -1,7 +1,7 @@
 '''
 Author: your name
 Date: 2021-04-29 21:25:00
-LastEditTime: 2021-05-04 14:10:14
+LastEditTime: 2021-05-06 19:34:42
 LastEditors: Please set LastEditors
 Description: In User Settings Edit
 FilePath: /FlopFarmAdminLTE/flopfarm/flopfarm_admin/models.py
@@ -74,3 +74,6 @@ class Instance(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-type']
