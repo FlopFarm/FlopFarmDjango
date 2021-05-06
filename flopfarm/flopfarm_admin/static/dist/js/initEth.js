@@ -201,11 +201,13 @@ $(document).ready( function(){
 
     function RefreshBalance() {
       console.log("Refresh Balance!");
+      console.log("dashboard_balance!");
       console.log(sender);
         myContract.methods.getBalance(sender).call().then(function (res) {
           // $("#senB").html.
           console.log(res);
           document.getElementById("senB").innerHTML = web3.utils.fromWei(res);
+          document.getElementById("dashboard_balance").innerHTML = web3.utils.fromWei(res);
         })
   
         // myContract.methods.getBalance(receiver).call().then(function (res) {
