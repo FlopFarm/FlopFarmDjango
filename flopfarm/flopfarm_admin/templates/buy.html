@@ -98,6 +98,7 @@ FlopFarm | Confirm Order
   <!-- =========================================================== -->
   <div class="col-md-9">
     {% if instance.type == "d" %}
+
       <div class="card card-success shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
       {% elif instance.type == "c" %}
       <div class="card card-primary shadow-lg"> <!--Change color here: default, primary, secondary, success, info, danger, warning-->
@@ -112,6 +113,8 @@ FlopFarm | Confirm Order
 
           {% if instance.type == "d" %}
           <li>{{ instance.APIinfo }}</li>
+          <img class="card-img-top" src="{% static 'img/AnimeAPI.webp' %}" alt="AnimeAPI">
+
           {% elif instance.type == "c" %}
           <li>OS: {{ instance.OS }}</li>
           <li>CPU: {{ instance.CPU }}</li>

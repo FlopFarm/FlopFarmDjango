@@ -118,6 +118,9 @@ FlopFarm | Market
 
           {% if ins.type == "d" %}
           <li>{{ ins.APIinfo }}</li>
+          <img class="card-img-top"   height="350" 
+          src="{% static 'img/AnimeAPI.webp' %}" alt="AnimeAPI">
+
           {% elif ins.type == "c" %}
           <li>OS: {{ ins.OS }}</li>
           <li>CPU: {{ ins.CPU }}</li>
